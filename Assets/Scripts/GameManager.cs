@@ -16,21 +16,22 @@ public class GameManager : MonoBehaviour {
     private int order;
     private int noiseLevel = 0;
     private int pairLevel = 0;
-    private int firstSoundIndex;
-    private int secondSoundIndex;
+    private int clip1;
+    private int clip2;
     private bool spawned = true;
-    private bool firstSoundPlayed = false;
-    private bool secondSoundPlayed = false;
+    private bool initialClip1Played = false;
+    private bool initialClip2Played = false;
     private bool areTheSame;
     private AudioClip firstStimulus;
     private AudioClip secondStimulus;
+    private AudioSource audioSource;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
         order = Random.Range(0, 2);
-        firstSoundIndex = Random.Range(0, 2);
-        secondSoundIndex = Random.Range(0, 2);
-        AudioSource audio = GetComponent<AudioSource>();
+        clip1 = Random.Range(0, 2);
+        clip2 = Random.Range(0, 2);
+        audioSource = GetComponent<AudioSource>();
 
         if (order == 0)
         {
@@ -43,7 +44,7 @@ public class GameManager : MonoBehaviour {
             differentClone = (GameObject)Instantiate(different, new Vector2(firstPos, 0.0f), Quaternion.identity);
         }
 
-        if (firstSoundIndex == secondSoundIndex)
+        if (clip1 == clip2)
         {
             areTheSame = true;
         }
@@ -52,18 +53,19 @@ public class GameManager : MonoBehaviour {
             areTheSame = false;
         }
 
-        if (!firstSoundPlayed)
+        if (!initialClip1Played)
         {
-            audio.clip = testing[firstSoundIndex];
-            audio.Play();
-            firstSoundPlayed = true;
+            audioSource.clip = testing[clip1];
+            initialClip1Played = true;
+            audioSource.Play();
         }
 
-        if (!secondSoundPlayed && firstSoundPlayed)
+        if (initialClip1Played && !initialClip2Played && !audioSource.isPlaying)
         {
-            audio.clip = testing[secondSoundIndex];
-            audio.Play();
-            secondSoundPlayed = true;
+            audioSource.clip = testing[clip2];
+            initialClip2Played = true;
+            audioSource.Play();
+
         }
 
     }
@@ -73,8 +75,8 @@ public class GameManager : MonoBehaviour {
         if (!spawned)
         {
             order = Random.Range(0, 2);
-            firstSoundIndex = Random.Range(0, 2);
-            secondSoundIndex = Random.Range(0, 2);
+            clip1 = Random.Range(0, 2);
+            clip2 = Random.Range(0, 2);
 
             if (order == 0)
             {
@@ -87,7 +89,7 @@ public class GameManager : MonoBehaviour {
                 differentClone = (GameObject)Instantiate(different, new Vector2(firstPos, 0.0f), Quaternion.identity);
             }
             spawned = true;
-            if (firstSoundIndex == secondSoundIndex)
+            if (clip1 == clip2)
             {
                 areTheSame = true;
             } else
@@ -108,8 +110,8 @@ public class GameManager : MonoBehaviour {
             }
             Destroy(sameClone);
             Destroy(differentClone);
-            firstSoundPlayed = false;
-            secondSoundPlayed = false;
+            initialClip1Played = false;
+            initialClip2Played = false;
             spawned = false;
 
         }
@@ -125,8 +127,8 @@ public class GameManager : MonoBehaviour {
             }
             Destroy(sameClone);
             Destroy(differentClone);
-            firstSoundPlayed = false;
-            secondSoundPlayed = false;
+            initialClip1Played = false;
+            initialClip2Played = false;
             spawned = false;
 
 
