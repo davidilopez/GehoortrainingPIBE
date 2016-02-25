@@ -65,7 +65,7 @@ public class MainScript : MonoBehaviour {
                 // Stop it from looping 
                 spawned = true;
                 // Select a random order for the targets
-                order = Random.Range(0, 2);
+                order = Random.Range(0, 1);
                 // Select the clips to be played (clip a + clip b; clip b + clip a; clip a + clip a; clip b + clip b)
                 clip1Index = Random.Range(0, 2);
                 clip2Index = Random.Range(0, 2);
@@ -207,6 +207,8 @@ public class MainScript : MonoBehaviour {
                 // Only get a new set if the answer was correct
                 if (isCorrect || incorrectAnswers <=1)
                 {
+                    Destroy(sameClone);
+                    Destroy(differentClone);
                     spawned = false;
                     trialEnded = false;
                 }
@@ -233,6 +235,8 @@ public class MainScript : MonoBehaviour {
                 // Restart in a new trial
                 if (isCorrect || incorrectAnswers <= 1)
                 {
+                    Destroy(sameClone);
+                    Destroy(differentClone);
                     spawned = false;
                     trialEnded = false;
                 }
