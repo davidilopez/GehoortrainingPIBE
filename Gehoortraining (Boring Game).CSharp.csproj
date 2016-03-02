@@ -69,11 +69,20 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\GameManager.cs" />
-    <Compile Include="Assets\Scripts\MainScript.cs" />
-    <Compile Include="Assets\Scripts\audioFiles.cs" />
+    <ProjectReference Include="Gehoortraining (Boring Game).CSharp.Plugins.csproj">
+      <Project>{B7E47DDA-0B2B-1EB4-0782-5C89D0AB3B36}</Project>
+      <Name>Gehoortraining (Boring Game).CSharp.Plugins</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\MainScript01_game.cs" />
+    <Compile Include="Assets\Scripts\MainScript01_plain.cs" />
+    <Compile Include="Assets\Scripts\starColor.cs" />
+    <Compile Include="Assets\Scripts\starColorDifferent.cs" />
+    <Compile Include="Assets\Scripts\starScale.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Plugins\Pixelplacement\iTween\ReadMe!\ReadMe!.txt" />
     <None Include="Assets\ProjectSettings\ProjectVersion.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />
