@@ -187,7 +187,7 @@ public class MainScript01_plain : MonoBehaviour {
             }
 
             // Listen for a response and act accordingly
-            if (Input.GetKeyDown(KeyCode.LeftArrow))
+            if (Input.GetButtonDown("LeftBumper"))
             {
                 if ((areTheSame && order == 0) || (!areTheSame && order == 1))
                 {
@@ -217,7 +217,7 @@ public class MainScript01_plain : MonoBehaviour {
                 clip1Played = false;
                 clip2Played = false;
             }
-            if (Input.GetKeyDown(KeyCode.RightArrow))
+            if (Input.GetButtonDown("RightBumper"))
             {
                 if ((areTheSame && order == 1) || (!areTheSame && order == 0))
                 {
